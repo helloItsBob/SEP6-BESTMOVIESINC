@@ -1,1 +1,44 @@
+name: Deploy Gateway API Config
 
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - gateway/open-api.yaml
+
+  # possibility to run workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Authenticate to Google Cloud
+        uses: google-github-actions/auth@v1.1.1
+        with:
+          credentials_json: ${{ secrets.GCLOUD_AUTH }}
+
+      - name: Set up Google Cloud SDK
+        uses: google-github-actions/setup-gcloud@v1.1.1
+        with:
+          project_id: ${{ secrets.GC_PROJECT_ID }}
+
+      - name: Deploy API to Cloud API Gateway
+        run: |
+          gcloud api-gateway api-configs create api-config-v0 \
+            --api=api-id \
+            --project=${{ secrets.GC_PROJECT_ID }} \
+            --openapi-spec=./gateway/open-api.yaml
+
+      - name: Update API Gateway
+        run: |
+          gcloud api-gateway gateways update movies-gateway \
+            --api=api-id \
+            --api-config=api-config-v0 \
+            --location=europe-west1	\
+            --project=${{ secrets.GC_PROJECT_ID }}
