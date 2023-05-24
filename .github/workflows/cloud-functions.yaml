@@ -1,1 +1,44 @@
+name: deploy of get movie function
 
+on:
+  push :
+    branches: [main]
+    paths:
+    - 'functions/get-movie-func/**'
+    
+  workflow_dispatch:   
+    
+env:
+  PROJECT: ${{secrets.GC_PROJECT_ID}}
+          
+jobs:
+  function_deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: checkout repository
+      uses: actions/checkout@v3
+
+    - name: authentication
+      uses: google-github-actions/auth@v1.1.1
+      with:
+        project_id: ${{env.PROJECT}}
+        credentials_json: ${{secrets.GCLOUD_AUTH}}
+
+    - name: Set up Cloud SDK
+      uses: google-github-actions/setup-gcloud@v1.1.1
+
+    - name: deploy function
+      run: > 
+        gcloud
+        functions
+        deploy
+        get-movie-func
+        --region=europe-north1
+        --runtime=java17
+        --gen2
+        --trigger-http   
+        --source=./functions/get-movie-func
+        --entry-point=cloudcode.getmoviefunc.GetMovies
+        --allow-unauthenticated 
+        --set-env-vars TMDB_API_KEY=${{ secrets.TMDB_API_KEY }}
+#unauthenticated is there for testing purposes
