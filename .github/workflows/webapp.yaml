@@ -30,4 +30,4 @@ jobs:
 
       - name: Deploy web app to Google Cloud Storage
         run: |
-          gsutil cp -r ./webapp/* gs://my-movie-bucket/
+          gsutil cp -r ./webapp/* gs://best-movies/
