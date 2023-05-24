@@ -1,1 +1,33 @@
+name: Deploy Static Web App
 
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - webapp/** # include subdirectories as well
+
+  # possibility to run workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  update_bucket:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Authenticate with Google Cloud
+        uses: google-github-actions/auth@v1.1.1
+        with:
+          credentials_json: ${{ secrets.GCLOUD_AUTH }}
+
+      - name: Set up Google Cloud SDK
+        uses: google-github-actions/setup-gcloud@v1.1.1
+        with:
+          project_id: ${{ secrets.GC_PROJECT_ID }}
+
+      - name: Deploy web app to Google Cloud Storage
+        run: |
+          gsutil cp -r ./webapp/* gs://my-movie-bucket/
