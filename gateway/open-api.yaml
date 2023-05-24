@@ -1,0 +1,27 @@
+swagger: '2.0'
+info:
+  title: "My API"
+  description: API Gateway with a Cloud Run backend
+  version: 1.0.0
+schemes:
+  - https
+produces:
+  - application/json
+paths:
+  /getType:
+    get:
+      operationId: getMoviesList
+      x-google-backend:
+        address: https://get-movie-func-nw2z6mefba-lz.a.run.app
+      summary: Get List Of Movies
+      parameters:
+        - name: endpoint
+          in: query
+          description: Type of Movie List To Retrieve
+          required: false
+          type: string
+      responses:
+        '200':
+          description: A successful response
+          schema:
+            type: string
