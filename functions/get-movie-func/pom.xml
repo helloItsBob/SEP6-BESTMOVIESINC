@@ -21,7 +21,6 @@
     </dependency>
   </dependencies>
 
-  <!-- Required for Java 11 functions in the inline editor -->
   <build>
     <plugins>
       <plugin>
