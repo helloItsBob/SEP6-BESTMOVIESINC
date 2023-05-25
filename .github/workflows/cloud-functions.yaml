@@ -4,7 +4,7 @@ on:
   push :
     branches: [main]
     paths:
-    - 'functions/get-movies-func/**'
+    - 'functions/**'
     
   workflow_dispatch:   
     
@@ -12,7 +12,7 @@ env:
   PROJECT: ${{secrets.GC_PROJECT_ID}}
           
 jobs:
-  function_deploy:
+  get_movie_function_deploy:
     runs-on: ubuntu-latest
     steps:
     - name: checkout repository
@@ -39,9 +39,23 @@ jobs:
         --trigger-http   
         --source=./functions/get-movies-func
         --entry-point=getmovies.GetMovies
-        --allow-unauthenticated 
         --set-env-vars TMDB_API_KEY=${{ secrets.TMDB_API_KEY }}
-#unauthenticated is there for testing purposes
+
+
+  search_movie_function_deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: checkout repository
+      uses: actions/checkout@v3
+
+    - name: Authenticate to Google Cloud
+      uses: google-github-actions/auth@v1.1.1
+      with:
+        project_id: ${{env.PROJECT}}
+        credentials_json: ${{secrets.GCLOUD_AUTH}}
+
+    - name: Set up Cloud SDK
+      uses: google-github-actions/setup-gcloud@v1.1.1
 
     - name: Deploy Cloud Search Function
       run: |
@@ -50,7 +64,6 @@ jobs:
           --source=./functions/search-movie-func \
           --runtime java17 \
           --trigger-http \
-          --allow-unauthenticated \
           --region europe-north1 \
           --project ${{ secrets.GC_PROJECT_ID }} \
           --gen2 \
