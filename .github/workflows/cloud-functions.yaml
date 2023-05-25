@@ -12,7 +12,7 @@ env:
   PROJECT: ${{secrets.GC_PROJECT_ID}}
           
 jobs:
-  get_movie_function_deploy:
+  get_movies_function_deploy:
     runs-on: ubuntu-latest
     steps:
     - name: checkout repository
@@ -88,7 +88,7 @@ jobs:
         run: |
           gcloud functions deploy store_users_neo4j_func \
             --entry-point storeusersneo4j.StoreUsersNeo4j \
-            --source=./functions/store_users_neo4j_func \
+            --source=./functions/store-users-neo4j-func \
             --runtime java17 \
             --trigger-http \
             --region europe-north1 \
