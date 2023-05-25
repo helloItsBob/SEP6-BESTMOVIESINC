@@ -6,8 +6,53 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+<div class="container">
 
-<h1>Best Movies Inc.</h1>
+
+    <div id="navbar" class="navbar">
+
+        <div class="logoContainer">
+            <a href="index.html">
+                <img src="best-movies-inc.png" alt="Best Movies Inc. logo">
+            </a>
+        </div>
+
+        <div class="navbarLinks">
+            <a href="#" id="popular">Popular</a>
+            <a href="#" id="top_rated">Top Rated</a>
+            <a href="#" id="upcoming">Upcoming</a>
+        </div>
+
+        <div id="auth-navbarLinks" class="hidden">
+            <a href="#" id="watchlist">Watch List</a>
+            <a href="#" id="favorites">Favorites</a>
+            <button id="logoutButton" type="button">Logout</button>
+        </div>
+
+        <div id="loginDiv">
+            <form id="loginForm">
+                <p id="loginMessage"></p>
+
+                <label for="email"></label>
+                <input type="text" id="email" placeholder="Email"
+                       required>
+                <br>
+                <label for="password"></label>
+                <input type="password" id="password" placeholder="Password"
+                       required>
+                <br>
+                <button type="submit">Login</button>
+                <a id="registerButton" href="#">Register</a>
+            </form>
+        </div>
+    </div>
+
+    <hr>
+
+    <div id="movieContainer">
+        <!-- Movie details will be dynamically added here -->
+    </div>
+</div>
 
 <script src="script.js"></script>
 </body>
