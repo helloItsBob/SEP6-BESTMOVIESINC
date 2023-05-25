@@ -1,4 +1,4 @@
-package cloudcode.getmoviefunc;
+package getmovies;
 
 import com.google.cloud.functions.HttpFunction;
 import com.google.cloud.functions.HttpRequest;
@@ -43,7 +43,7 @@ public class GetMovies implements HttpFunction
       {
         apiUrl =
             "https://api.themoviedb.org/3/discover/movie?api_key=" + tmdbApiKey
-                + "&language=en-US&sort_by=popularity.desc&page=1";
+                + "&language=en-US&sort_by=popularity.desc&page=2";
       }
     }
 

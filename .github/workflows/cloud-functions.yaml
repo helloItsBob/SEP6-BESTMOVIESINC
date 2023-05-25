@@ -1,10 +1,10 @@
-name: deploy of get movie function
+name: deploy of get movies function
 
 on:
   push :
     branches: [main]
     paths:
-    - 'functions/get-movie-func/**'
+    - 'functions/get-movies-func/**'
     
   workflow_dispatch:   
     
@@ -32,13 +32,13 @@ jobs:
         gcloud
         functions
         deploy
-        get-movie-func
+        get-movies-func
         --region=europe-north1
         --runtime=java17
         --gen2
         --trigger-http   
-        --source=./functions/get-movie-func
-        --entry-point=cloudcode.getmoviefunc.GetMovies
+        --source=./functions/get-movies-func
+        --entry-point=getmovies.GetMovies
         --allow-unauthenticated 
         --set-env-vars TMDB_API_KEY=${{ secrets.TMDB_API_KEY }}
 #unauthenticated is there for testing purposes
