@@ -14,6 +14,10 @@ fetch(urlGetType)
         const filteredMovies = filterMovieProperties(movieData);
         updateMovieDetails(filteredMovies);
         console.log(`Discover Movies:`, movieData);
+
+        // hide loading animation
+        const loadingOverlay = document.getElementById("loading-overlay");
+        loadingOverlay.style.display = "none";
     })
     .catch(error => {
         console.error(error);
@@ -29,6 +33,11 @@ upcomingMovies.addEventListener('click', () => fetchMovies('upcoming'));
 
 function fetchMovies(category) {
     const endpoint = urlGetType + '?endpoint=' + category;
+
+    // show loading animation
+    const loadingOverlay = document.getElementById("loading-overlay");
+    loadingOverlay.style.display = "flex";
+
     fetch(endpoint)
         .then(response => {
             if (response.ok) {
@@ -41,6 +50,10 @@ function fetchMovies(category) {
             const filteredMovies = filterMovieProperties(data);
             updateMovieDetails(filteredMovies);
             console.log(`${category} Movies:`, data);
+
+            // hide loading animation
+            const loadingOverlay = document.getElementById("loading-overlay");
+            loadingOverlay.style.display = "none";
         })
         .catch(error => {
             console.error('Error:', error);
@@ -143,6 +156,10 @@ function searchMovie() {
     const movieTitleInput = document.getElementById('titleInput');
     const movieTitle = movieTitleInput.value;
 
+    // show loading animation
+    const loadingOverlay = document.getElementById("loading-overlay");
+    loadingOverlay.style.display = "flex";
+
     fetch(`${urlSearch}?movieTitle=${encodeURIComponent(movieTitle)}`)
         .then(response => response.json())
         .then(data => {
@@ -150,6 +167,10 @@ function searchMovie() {
 
             const filteredMovies = filterMovieProperties(data);
             updateMovieDetails(filteredMovies);
+
+            // hide loading animation
+            const loadingOverlay = document.getElementById("loading-overlay");
+            loadingOverlay.style.display = "none";
 
             // Clear the input value
             movieTitleInput.value = '';
