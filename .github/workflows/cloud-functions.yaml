@@ -68,3 +68,32 @@ jobs:
           --project ${{ secrets.GC_PROJECT_ID }} \
           --gen2 \
           --set-env-vars TMDB_API_KEY=${{ secrets.TMDB_API_KEY }}  # Set the environment variable
+
+  store_users_neo4j_function_deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout repository
+        uses: actions/checkout@v3
+
+      - name: Authenticate to Google Cloud
+        uses: google-github-actions/auth@v1.1.1
+        with:
+          project_id: ${{env.PROJECT}}
+          credentials_json: ${{secrets.GCLOUD_AUTH}}
+
+      - name: Set up Cloud SDK
+        uses: google-github-actions/setup-gcloud@v1.1.1
+
+      - name: Deploy Cloud StoreUser in Neo4j Function
+        run: |
+          gcloud functions deploy store_users_neo4j_func \
+            --entry-point storeusersneo4j.StoreUsersNeo4j \
+            --source=./functions/store_users_neo4j_func \
+            --runtime java17 \
+            --trigger-http \
+            --region europe-north1 \
+            --project ${{ secrets.GC_PROJECT_ID }} \
+            --gen2 \
+            --set-env-vars NEO4J_URI=${{ secrets.NEO4J_URI }} \
+            --set-env-vars NEO4J_USER=${{ secrets.NEO4J_USER }} \
+            --set-env-vars NEO4J_PASSWORD=${{ secrets.NEO4J_PASSWORD }}
