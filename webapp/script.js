@@ -134,3 +134,32 @@ function updateMovieDetails(movieData) {
         movieContainer.appendChild(movieCard);
     }
 }
+
+// CODE FOR SEARCH BOX
+
+const urlSearch = "https://movies-gateway-hoth42g.ew.gateway.dev/search";
+
+function searchMovie() {
+    const movieTitleInput = document.getElementById('titleInput');
+    const movieTitle = movieTitleInput.value;
+
+    fetch(`${urlSearch}?movieTitle=${encodeURIComponent(movieTitle)}`)
+        .then(response => response.json())
+        .then(data => {
+            console.log('Search results:', data);
+
+            const filteredMovies = filterMovieProperties(data);
+            updateMovieDetails(filteredMovies);
+
+            // Clear the input value
+            movieTitleInput.value = '';
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+}
+
+document.getElementById('searchForm').addEventListener('submit', function (event) {
+    event.preventDefault(); // Prevent form submission
+    searchMovie();
+});

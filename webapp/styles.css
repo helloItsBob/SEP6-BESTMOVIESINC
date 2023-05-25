@@ -130,3 +130,20 @@ button:hover {
 #logoutButton {
   margin-left: 20px;
 }
+
+/* search box styling */
+
+#searchContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+#titleInput {
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  width: 300px;
+}
