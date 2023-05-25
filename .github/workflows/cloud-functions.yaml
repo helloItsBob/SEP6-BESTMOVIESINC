@@ -1,4 +1,4 @@
-name: deploy of get movies function
+name: Deploy Cloud Functions
 
 on:
   push :
@@ -18,7 +18,7 @@ jobs:
     - name: checkout repository
       uses: actions/checkout@v3
 
-    - name: authentication
+    - name: Authenticate to Google Cloud
       uses: google-github-actions/auth@v1.1.1
       with:
         project_id: ${{env.PROJECT}}
@@ -27,7 +27,7 @@ jobs:
     - name: Set up Cloud SDK
       uses: google-github-actions/setup-gcloud@v1.1.1
 
-    - name: deploy function
+    - name: Deploy Get Movies function
       run: > 
         gcloud
         functions
@@ -42,3 +42,16 @@ jobs:
         --allow-unauthenticated 
         --set-env-vars TMDB_API_KEY=${{ secrets.TMDB_API_KEY }}
 #unauthenticated is there for testing purposes
+
+    - name: Deploy Cloud Search Function
+      run: |
+        gcloud functions deploy search-movie-func \
+          --entry-point searchmovie.SearchMovie \
+          --source=./functions/search-movie-func \
+          --runtime java17 \
+          --trigger-http \
+          --allow-unauthenticated \
+          --region europe-north1 \
+          --project ${{ secrets.GC_PROJECT_ID }} \
+          --gen2 \
+          --set-env-vars TMDB_API_KEY=${{ secrets.TMDB_API_KEY }}  # Set the environment variable
