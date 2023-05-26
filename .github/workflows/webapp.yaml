@@ -21,7 +21,8 @@ jobs:
       - name: Modify placeholder values # replace with secret
         run: |
           sed -i "s#URL_GET_TYPE_PLACEHOLDER#${{ secrets.URL_GET_TYPE_PLACEHOLDER }}#g" webapp/script.js
-          sed -i "s#URL_SEARCH_PLACEHOLDER#${{ secrets.URL_SEARCH_PLACEHOLDER }}#g" webapp/script.js
+          sed -i "s#URL_SEARCH_PLACEHOLDER#${{ secrets.URL_SEARCH_PLACEHOLDER }}#g" webapp/search.js
+          sed -i "s#URL_CAST_TRAILER_PLACEHOLDER#${{ secrets.URL_CAST_TRAILER_PLACEHOLDER }}#g" webapp/moviePopup.js
 
       - name: Authenticate with Google Cloud
         uses: google-github-actions/auth@v1.1.1
