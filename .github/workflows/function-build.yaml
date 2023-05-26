@@ -5,12 +5,12 @@ on:
   pull_request:
     branches: [main]  
     paths:
-    - 'functions/get-movies-func/**'
+    - 'functions/**'
     
   workflow_dispatch:   
           
 jobs:
-  build:
+  build_get_movies_func:
     runs-on: ubuntu-latest
 
     steps:
@@ -30,3 +30,62 @@ jobs:
     - name: MVN Test
       run: cd functions/get-movies-func && mvn test
 
+  build_search_movie_func:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up JDK 17
+      uses: actions/setup-java@v3
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+        cache: maven   
+    - name: Run the Maven verify phase
+      run: cd functions/search-movie-func && mvn --batch-mode --update-snapshots verify
+    - name: MVN Compile
+      run: cd functions/search-movie-func && mvn compile
+    - name: Build with Maven
+      run: cd functions/search-movie-func && mvn --batch-mode package --file pom.xml
+    - name: MVN Test
+      run: cd functions/search-movie-func && mvn test
+
+  build_store_users_neo4j_func:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up JDK 17
+      uses: actions/setup-java@v3
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+        cache: maven   
+    - name: Run the Maven verify phase
+      run: cd functions/store-users-neo4j-func && mvn --batch-mode --update-snapshots verify
+    - name: MVN Compile
+      run: cd functions/store-users-neo4j-func && mvn compile
+    - name: Build with Maven
+      run: cd functions/store-users-neo4j-func && mvn --batch-mode package --file pom.xml
+    - name: MVN Test
+      run: cd functions/store-users-neo4j-func && mvn test
+
+  build_get_cast_and_trailer_func:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up JDK 17
+      uses: actions/setup-java@v3
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+        cache: maven   
+    - name: Run the Maven verify phase
+      run: cd functions/get-cast-and-trailer-func && mvn --batch-mode --update-snapshots verify
+    - name: MVN Compile
+      run: cd functions/get-cast-and-trailer-func && mvn compile
+    - name: Build with Maven
+      run: cd functions/get-cast-and-trailer-func && mvn --batch-mode package --file pom.xml
+    - name: MVN Test
+      run: cd functions/get-cast-and-trailer-func && mvn test
