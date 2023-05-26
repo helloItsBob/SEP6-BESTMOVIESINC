@@ -142,3 +142,26 @@ paths:
           description: Invalid action
           schema:
             type: string
+
+  /getList:
+    get:
+      operationId: getStoredMovies
+      x-google-backend:
+        address: https://retreive-lists-func-nw2z6mefba-lz.a.run.app
+      summary: Retreive lists of movies from database
+      parameters:
+        - name: uid
+          in: query
+          description: UID of a user
+          required: true
+          type: string
+        - name: list
+          in: query
+          description: Choice between 'watchlist' and 'favorites' lists
+          required: true
+          type: string
+      responses:
+        '200':
+          description: A successful response
+          schema:
+            type: string
