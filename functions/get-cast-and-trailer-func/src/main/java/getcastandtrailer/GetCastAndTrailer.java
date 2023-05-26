@@ -71,7 +71,6 @@ public class GetCastAndTrailer implements HttpFunction
 
         // Process the JSON response
         String response = responseBuilder.toString();
-        // ... Parse the response and extract the trailer and cast information
 
         // Return the response as the HTTP response
         httpResponse.setStatusCode(200);
