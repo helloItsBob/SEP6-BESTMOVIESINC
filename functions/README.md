@@ -38,3 +38,33 @@
             --gen2 \
             --set-env-vars TMDB_API_KEY=${{ secrets.TMDB_API_KEY }}  <--- set needed env-variables
 ```
+<hr>
+
+> After every addition of a new function in ***/functions*** folder,
+> update ***function-build.yaml*** in the following manner:
+
+1. Change to appropriate job name in the first line ---> **build_[name]:**
+2. Find path to your new function and place it instead of ellipsis ***run: cd ... &&***
+in each ***run*** command
+
+```yaml
+  build_get_cast_and_trailer_func:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          cache: maven
+      - name: Run the Maven verify phase
+        run: cd functions/get-cast-and-trailer-func && mvn --batch-mode --update-snapshots verify  <--- change path
+      - name: MVN Compile
+        run: cd functions/get-cast-and-trailer-func && mvn compile  <--- change path
+      - name: Build with Maven
+        run: cd functions/get-cast-and-trailer-func && mvn --batch-mode package --file pom.xml  <--- change path
+      - name: MVN Test
+        run: cd functions/get-cast-and-trailer-func && mvn test  <--- change path
+```
