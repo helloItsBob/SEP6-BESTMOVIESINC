@@ -1,0 +1,103 @@
+/* movie card open css */
+
+.movieModal {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.moviePopupContent {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 500px;
+  height: 800px;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  padding: 20px;
+  max-width: 500px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  overflow: auto; /* Add scrollbar when content exceeds the height */
+}
+
+.moviePopupContent .moviePoster {
+  width: 300px;
+  height: auto;
+  max-width: 100%;
+  display: block;
+  margin: 0 auto;
+}
+
+.moviePopupContent .heartIcon {
+  width: 50px;
+  height: auto;
+  float: right;
+}
+
+.moviePopupContent .watchlistIcon {
+  width: 40px;
+  height: auto;
+  float: left;
+}
+
+.moviePopupContent h2 {
+  text-align: center;
+}
+
+.moviePopupContent .movieOverview {
+  margin-top: 40px;
+  height: auto;
+}
+
+.moviePopupContent .movieInfo {
+  margin-top: 40px;
+}
+
+.moviePopupContent .movieTrailer {
+  margin-top: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.moviePopupContent .movieTrailer iframe{
+  width: 100%;
+  height: 300px;
+}
+
+.movieCast {
+  margin-top: 40px;
+}
+
+.movieCast ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+.movieCast ul li {
+  padding-left: 20px;
+  padding-right: 20px;
+  margin-bottom: 10px;
+  font-size: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.movieCast img {
+  width: 60px;
+  height: auto;
+}
+
+.movieModal p {
+  font-size: 14px;
+  color: #777777;
+}
