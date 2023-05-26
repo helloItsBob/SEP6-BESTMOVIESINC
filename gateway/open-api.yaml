@@ -43,3 +43,47 @@ paths:
           description: A successful response
           schema:
             type: string
+
+  /createUser:
+    post:
+      operationId: postUserNeo4j
+      x-google-backend:
+        address: https://store-users-neo4j-func-nw2z6mefba-lz.a.run.app
+      summary: Store the user in database
+      parameters:
+        - name: uid
+          in: query
+          description: UID of a user
+          required: true
+          type: string
+        - name: username
+          in: query
+          description: Username of a user
+          required: true
+          type: string
+      responses:
+        '200':
+          description: A successful response
+          schema:
+            type: string
+
+    get:
+      operationId: checkUserExists
+      x-google-backend:
+        address: https://store-users-neo4j-func-nw2z6mefba-lz.a.run.app
+      summary: Check if the given username exists in db at registration
+      parameters:
+        - name: username
+          in: query
+          description: Username of a user
+          required: true
+          type: string
+      responses:
+        '200':
+          description: A successful response
+          schema:
+            type: string
+        '409':
+          description: Username exists in db
+          schema:
+            type: string
