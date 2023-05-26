@@ -18,6 +18,11 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
+      - name: Modify placeholder values # replace with secret
+        run: |
+          sed -i "s#URL_GET_TYPE_PLACEHOLDER#${{ secrets.URL_GET_TYPE_PLACEHOLDER }}#g" webapp/script.js
+          sed -i "s#URL_SEARCH_PLACEHOLDER#${{ secrets.URL_SEARCH_PLACEHOLDER }}#g" webapp/script.js
+
       - name: Authenticate with Google Cloud
         uses: google-github-actions/auth@v1.1.1
         with:

@@ -1,7 +1,7 @@
 console.log("Script loaded!");
 
 // Initial load of the movies - discover
-const urlGetType = "https://movies-gateway-hoth42g.ew.gateway.dev/getType";
+const urlGetType = "URL_GET_TYPE_PLACEHOLDER";
 fetch(urlGetType)
     .then(response => {
         if (response.ok) {
@@ -150,7 +150,7 @@ function updateMovieDetails(movieData) {
 
 // CODE FOR SEARCH BOX
 
-const urlSearch = "https://movies-gateway-hoth42g.ew.gateway.dev/search";
+const urlSearch = "URL_SEARCH_PLACEHOLDER";
 
 function searchMovie() {
     const movieTitleInput = document.getElementById('titleInput');
