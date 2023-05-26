@@ -87,3 +87,22 @@ paths:
           description: Username exists in db
           schema:
             type: string
+
+  /getCastAndTrailer:
+    get:
+      operationId: getCastAndTrailer
+      x-google-backend:
+        address: https://get-cast-and-trailer-func-nw2z6mefba-lz.a.run.app/
+      summary: Get Cast and Trailer for the movie
+      parameters:
+        - name: movieId
+          in: query
+          description: MovieId to retreive cast and trailer
+          required: true
+          type: string
+      responses:
+        '200':
+          description: A successful response
+          schema:
+            type: string
+            
