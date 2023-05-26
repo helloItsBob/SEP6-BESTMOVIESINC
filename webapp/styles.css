@@ -35,6 +35,11 @@
   flex-grow: 1; /* Allow the navigation links to grow and occupy remaining space */
 }
 
+#auth-navbarLinks b {
+  display: inline;
+  padding-right: 50px;
+}
+
 .logoContainer {
   flex: 0 0 auto; /* Prevent the logo from growing or shrinking */
 }
