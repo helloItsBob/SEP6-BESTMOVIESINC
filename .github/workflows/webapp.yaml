@@ -18,11 +18,22 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Modify placeholder values # replace with secret
+      - name: Modify URL placeholder values # replace with secret
         run: |
           sed -i "s#URL_GET_TYPE_PLACEHOLDER#${{ secrets.URL_GET_TYPE_PLACEHOLDER }}#g" webapp/script.js
           sed -i "s#URL_SEARCH_PLACEHOLDER#${{ secrets.URL_SEARCH_PLACEHOLDER }}#g" webapp/search.js
           sed -i "s#URL_CAST_TRAILER_PLACEHOLDER#${{ secrets.URL_CAST_TRAILER_PLACEHOLDER }}#g" webapp/moviePopup.js
+          sed -i "s#URL_CREATE_USER_PLACEHOLDER#${{ secrets.URL_CREATE_USER_PLACEHOLDER }}#g" webapp/login.js
+
+      - name: Replace Firebase placeholder values
+        run: |
+          sed -i "s#FIREBASE_API_KEY#${{ secrets.FIREBASE_API_KEY }}#g" webapp/login.js
+          sed -i "s#FIREBASE_AUTH_DOMAIN#${{ secrets.FIREBASE_AUTH_DOMAIN }}#g" webapp/login.js
+          sed -i "s#FIREBASE_PROJECT_ID#${{ secrets.FIREBASE_PROJECT_ID }}#g" webapp/login.js
+          sed -i "s#FIREBASE_STORAGE_BUCKET#${{ secrets.FIREBASE_STORAGE_BUCKET }}#g" webapp/login.js    
+          sed -i "s#FIREBASE_MESSAGING_SEND_ID#${{ secrets.FIREBASE_MESSAGING_SEND_ID }}#g" webapp/login.js
+          sed -i "s#FIREBASE_APP_ID#${{ secrets.FIREBASE_APP_ID }}#g" webapp/login.js
+          sed -i "s#FIREBASE_MEASURE_ID#${{ secrets.FIREBASE_MEASURE_ID }}#g" webapp/login.js
 
       - name: Authenticate with Google Cloud
         uses: google-github-actions/auth@v1.1.1
