@@ -20,6 +20,8 @@ fetch(urlGetType)
         // hide loading animation
         const loadingOverlay = document.getElementById("loading-overlay");
         loadingOverlay.style.display = "none";
+
+        checkIfUserSignedIn();
     })
     .catch(error => {
         console.error(error);
@@ -63,7 +65,7 @@ function fetchMovies(category) {
         });
 }
 
-function filterMovieProperties(movieData) {
+export function filterMovieProperties(movieData) {
     const filteredMovies = [];
     for (let i = 0; i < movieData.results.length; i++) {
         const movie = movieData.results[i];
@@ -81,7 +83,7 @@ function filterMovieProperties(movieData) {
     return filteredMovies;
 }
 
-function updateMovieDetails(movieData) {
+export function updateMovieDetails(movieData) {
     // Get movie container element, clear it
     const movieContainer = document.getElementById('movieContainer');
     movieContainer.innerHTML = '';
