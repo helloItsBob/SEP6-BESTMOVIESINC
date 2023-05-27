@@ -1,5 +1,7 @@
 // CODE FOR SEARCH BOX
 
+import {filterMovieProperties, updateMovieDetails} from "./script.js";
+
 const urlSearch = "URL_SEARCH_PLACEHOLDER";
 function searchMovie() {
     const movieTitleInput = document.getElementById('titleInput');
