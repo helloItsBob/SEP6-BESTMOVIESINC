@@ -40,6 +40,12 @@
   padding-right: 50px;
 }
 
+/* navbar highlighting */
+.navbar .activeTab:not(.logoContainer a):not(#registerButton):not(#random) {
+  background-color: #8BC34A;
+  color: #fff;
+}
+
 .logoContainer {
   flex: 0 0 auto; /* Prevent the logo from growing or shrinking */
 }
