@@ -97,7 +97,7 @@ paths:
       parameters:
         - name: movieId
           in: query
-          description: MovieId to retreive cast and trailer
+          description: MovieId to retrieve cast and trailer
           required: true
           type: string
       responses:
@@ -148,7 +148,7 @@ paths:
       operationId: getStoredMovies
       x-google-backend:
         address: https://retreive-lists-func-nw2z6mefba-lz.a.run.app
-      summary: Retreive lists of movies from database
+      summary: Retrieve lists of movies from database
       parameters:
         - name: uid
           in: query
@@ -158,6 +158,128 @@ paths:
         - name: list
           in: query
           description: Choice between 'watchlist' and 'favorites' lists
+          required: true
+          type: string
+      responses:
+        '200':
+          description: A successful response
+          schema:
+            type: string
+
+  /random:
+    get:
+      operationId: randomMovies
+      x-google-backend:
+        address: https://random-movies-func-nw2z6mefba-lz.a.run.app
+      summary: Get List Of Random Movies
+      parameters:
+        - name: number
+          in: query
+          description: Number of Movie To Retrieve
+          required: true
+          type: string
+      responses:
+        '200':
+          description: A successful response
+          schema:
+            type: string
+
+  /comments:
+    get:
+      operationId: getCommentsForMovie
+      x-google-backend:
+        address: https://comment-func-nw2z6mefba-lz.a.run.app
+      summary: Retrieves all user comments for a specific movie from db
+      parameters:
+        - name: movieId
+          in: query
+          description: Movie ID to retrieve user comments for
+          required: true
+          type: string
+      responses:
+        '200':
+          description: A successful response
+          schema:
+            type: string
+
+    post:
+      operationId: postCommentForMovie
+      x-google-backend:
+        address: https://comment-func-nw2z6mefba-lz.a.run.app
+      summary: Leave a comment and rating for a specific movie
+      parameters:
+        - name: uid
+          in: query
+          description: UID of a user
+          required: true
+          type: string
+        - name: movieId
+          in: query
+          description: ID of a movie
+          required: true
+          type: string
+        - name: content
+          in: query
+          description: Comment content
+          required: true
+          type: string
+        - name: rating
+          in: query
+          description: Movie rating
+          required: true
+          type: string
+      responses:
+        '200':
+          description: A successful response
+          schema:
+            type: string
+
+    put:
+      operationId: updateCommentForMovie
+      x-google-backend:
+        address: https://comment-func-nw2z6mefba-lz.a.run.app
+      summary: Update a comment and rating for a specific movie
+      parameters:
+        - name: uid
+          in: query
+          description: UID of a user
+          required: true
+          type: string
+        - name: movieId
+          in: query
+          description: ID of a movie
+          required: true
+          type: string
+        - name: content
+          in: query
+          description: Comment content
+          required: true
+          type: string
+        - name: rating
+          in: query
+          description: Movie rating
+          required: true
+          type: string
+      responses:
+        '200':
+          description: A successful response
+          schema:
+            type: string
+
+    delete:
+      operationId: deleteCommentsForMovie
+      x-google-backend:
+        address: https://comment-func-nw2z6mefba-lz.a.run.app
+      summary: Delete a specific comment for a specific movie from db
+      parameters:
+        - name: uid
+          in: query
+          description: UID of a user
+          required: true
+          type: string
+        - name: movieId
+          in: query
+          description: Movie ID to delete user comment for
           required: true
           type: string
       responses:

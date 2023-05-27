@@ -33,6 +33,7 @@ public class Comment implements HttpFunction {
     // Allow cross-origin requests
     response.appendHeader("Access-Control-Allow-Origin", "*");
     response.appendHeader("Access-Control-Allow-Methods", "GET");
+    response.appendHeader("Access-Control-Allow-Methods", "PUT");
     response.appendHeader("Access-Control-Allow-Methods", "POST");
     response.appendHeader("Access-Control-Allow-Methods", "DELETE");
     response.appendHeader("Access-Control-Allow-Headers", "Content-Type");
