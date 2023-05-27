@@ -179,3 +179,15 @@ export function updateMovieDetails(movieData) {
         movieContainer.appendChild(movieCard);
     }
 }
+
+// ==================  Highlight chosen tab in navbar  ======================= //
+
+const navbarItems = document.querySelectorAll('.navbar a');
+navbarItems.forEach(function(item) {
+    item.addEventListener('click', function() {
+        navbarItems.forEach(function(item) {
+            item.classList.remove('activeTab');
+        });
+        this.classList.add('activeTab');
+    });
+});

@@ -26,6 +26,7 @@ jobs:
           sed -i "s#URL_CREATE_USER_PLACEHOLDER#${{ secrets.URL_CREATE_USER_PLACEHOLDER }}#g" webapp/login.js
           sed -i "s#URL_MOVIE_LISTS_PLACEHOLDER#${{ secrets.URL_MOVIE_LISTS_PLACEHOLDER }}#g" webapp/icons.js
           sed -i "s#URL_RETRIEVE_LISTS_PLACEHOLDER#${{ secrets.URL_RETRIEVE_LISTS_PLACEHOLDER }}#g" webapp/retrieveLists.js
+          sed -i "s#URL_RANDOM_MOVIES_PLACEHOLDER#${{ secrets.URL_RANDOM_MOVIES_PLACEHOLDER }}#g" webapp/random.js
 
       - name: Replace Firebase placeholder values
         run: |

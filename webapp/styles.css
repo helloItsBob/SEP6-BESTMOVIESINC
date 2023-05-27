@@ -26,7 +26,7 @@
   text-decoration: none;
 }
 
-.navbar a:hover:not(.logoContainer a):not(#registerButton) {
+.navbar a:hover:not(.logoContainer a):not(#registerButton):not(#random) {
   background-color: #4CAF50;
   color: white;
 }
@@ -38,6 +38,12 @@
 #auth-navbarLinks b {
   display: inline;
   padding-right: 50px;
+}
+
+/* navbar highlighting */
+.navbar .activeTab:not(.logoContainer a):not(#registerButton):not(#random) {
+  background-color: #8BC34A;
+  color: #fff;
 }
 
 .logoContainer {
