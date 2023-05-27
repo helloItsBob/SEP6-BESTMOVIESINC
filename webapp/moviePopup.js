@@ -1,4 +1,5 @@
 // DISPLAY AND CLOSE MOVIE POPUP
+import {uid} from './login.js';
 
 const movieContainer = document.getElementById('movieContainer');
 const moviePopup = document.getElementById('moviePopup');
@@ -19,6 +20,17 @@ movieContainer.addEventListener('click', function (event) {
 
         // set additional information with the help of movie id
         const movieId = modalContent.querySelector('.movieId').textContent;
+
+        // Reattach event listeners to the icons
+        const watchlistIcon = modalContent.querySelector('.watchlistIcon');
+        watchlistIcon.addEventListener('click', function () {
+            handleIconClick(this, 'add', uid, movieId);
+        });
+
+        const favoritesIcon = modalContent.querySelector('.heartIcon');
+        favoritesIcon.addEventListener('click', function () {
+            handleIconClick(this, 'heart', uid, movieId);
+        })
 
         // Create element to hold a movie trailer
         const movieTrailer = document.createElement('div');

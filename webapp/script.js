@@ -1,5 +1,7 @@
 console.log("Script loaded!");
 
+import {checkIfUserSignedIn, uid} from './login.js';
+
 // Initial load of the movies - discover
 const urlGetType = "URL_GET_TYPE_PLACEHOLDER";
 fetch(urlGetType)
@@ -54,11 +56,13 @@ function fetchMovies(category) {
             // hide loading animation
             const loadingOverlay = document.getElementById("loading-overlay");
             loadingOverlay.style.display = "none";
+            checkIfUserSignedIn();
         })
         .catch(error => {
             console.error('Error:', error);
         });
 }
+
 function filterMovieProperties(movieData) {
     const filteredMovies = [];
     for (let i = 0; i < movieData.results.length; i++) {
@@ -96,6 +100,32 @@ function updateMovieDetails(movieData) {
         movieId.textContent = movie.id;
         movieId.style.display = 'none';
         movieCard.appendChild(movieId);
+
+        // add watchlist icon and change it on click
+        const watchlistIcon = document.createElement('img');
+        watchlistIcon.classList.add('watchlistIcon', 'hidden');
+        watchlistIcon.src = 'add.png';
+        watchlistIcon.dataset.iconTarget = generateUniqueId();
+        watchlistIcon.dataset.iconChanged = 'false';
+
+        // Event listener to change image on click
+        watchlistIcon.addEventListener('click', function () {
+            handleIconClick(this, 'add', uid, movieId.textContent);
+        });
+        movieCard.appendChild(watchlistIcon);
+
+        // add favorites icon and change it on click
+        const favoritesIcon = document.createElement('img');
+        favoritesIcon.classList.add('heartIcon', 'hidden');
+        favoritesIcon.src = 'heart.png';
+        favoritesIcon.dataset.iconTarget = generateUniqueId();
+        favoritesIcon.dataset.iconChanged = 'false';
+
+        // Event listener to change image on click
+        favoritesIcon.addEventListener('click', function () {
+            handleIconClick(this, 'heart', uid, movieId.textContent);
+        });
+        movieCard.appendChild(favoritesIcon);
 
         // Create movie title element
         const titleElement = document.createElement('h2');
