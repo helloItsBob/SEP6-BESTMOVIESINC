@@ -215,3 +215,29 @@ jobs:
             --set-env-vars NEO4J_USER=${{ secrets.NEO4J_USER }} \
             --set-env-vars NEO4J_PASSWORD=${{ secrets.NEO4J_PASSWORD }}        
 
+  random_movies_function_deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout repository
+        uses: actions/checkout@v3
+
+      - name: Authenticate to Google Cloud
+        uses: google-github-actions/auth@v1.1.1
+        with:
+          project_id: ${{env.PROJECT}}
+          credentials_json: ${{secrets.GCLOUD_AUTH}}
+
+      - name: Set up Cloud SDK
+        uses: google-github-actions/setup-gcloud@v1.1.1
+
+      - name: Deploy Cloud Random Movies Function
+        run: |
+          gcloud functions deploy random-movies-func \
+            --entry-point randommovies.RandomMovies \
+            --source=./functions/random-movies-func \
+            --runtime java17 \
+            --trigger-http \
+            --region europe-north1 \
+            --project ${{ secrets.GC_PROJECT_ID }} \
+            --gen2 \
+            --set-env-vars TMDB_API_KEY=${{ secrets.TMDB_API_KEY }}
