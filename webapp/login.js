@@ -10,6 +10,7 @@ import {
 
 export let uid;
 
+import { fetchFavoriteList, fetchWatchList } from './retrieveLists.js';
 // web app's Firebase configuration
 const firebaseConfig = {
     apiKey: "FIREBASE_API_KEY",
@@ -180,11 +181,12 @@ const welcome = document.getElementById('welcomeMessage');
 const previousDisplayState = welcome.style.display;
 
 export function checkIfUserSignedIn() {
-    onAuthStateChanged(auth, (user) => {
+    onAuthStateChanged(auth, async (user) => {
         const navbarLinks = document.getElementById('auth-navbarLinks');
         const loginDiv = document.getElementById('loginDiv');
         const watchlistIcon = document.getElementsByClassName('watchlistIcon');
         const favoritesIcon = document.getElementsByClassName('heartIcon');
+        const movieCards = document.querySelectorAll('.movieCard');
 
         if (user) {
             // user signed in
@@ -193,15 +195,34 @@ export function checkIfUserSignedIn() {
             // Perform actions for signed-in user
             navbarLinks.classList.remove('hidden');
             loginDiv.classList.add('hidden');
-
+            
+            // Fetch user lists to change icon states further
+            const favList = await fetchFavoriteList(uid);
+            const watchList = await fetchWatchList(uid);
             // Loop through the watchlist icons and remove the 'hidden' class
             for (let i = 0; i < watchlistIcon.length; i++) {
                 watchlistIcon[i].classList.remove('hidden');
             }
 
+            // Loop through all cards and set watchlist icons to correct state according to the users' watchlist (true/false + pic)
+            for (let i = 0; i < movieCards.length; i++) {
+                if (watchList.includes(parseInt(movieCards[i].querySelector('.movieId').textContent))) {
+                    movieCards[i].querySelector('.watchlistIcon').src = 'add-full.png';
+                    movieCards[i].querySelector('.watchlistIcon').dataset.iconChanged = 'true';
+                }
+            }
+
             // Loop through the favorites icons and remove the 'hidden' class
             for (let i = 0; i < favoritesIcon.length; i++) {
                 favoritesIcon[i].classList.remove('hidden');
+            }
+
+            // Loop through all cards and set favourite icons to correct state according to the users' favourite list (true/false + pic)
+            for (let i = 0; i < movieCards.length; i++) {
+                if (favList.includes(parseInt(movieCards[i].querySelector('.movieId').textContent))) {
+                    movieCards[i].querySelector('.heartIcon').src = 'heart-full.png';
+                    movieCards[i].querySelector('.heartIcon').dataset.iconChanged = 'true';
+                }
             }
 
             // TODO: modify welcome message to a specific user
