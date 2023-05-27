@@ -1,0 +1,11 @@
+
+.movieCard .heartIcon {
+  width: 50px;
+  height: auto;
+  float: right;
+}
+
+.movieCard .watchlistIcon {
+  width: 40px;
+  height: auto;
+}

@@ -3,9 +3,12 @@ import {
 } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
 import {
     createUserWithEmailAndPassword,
-    getAuth, onAuthStateChanged, signInWithEmailAndPassword
-
+    getAuth,
+    onAuthStateChanged,
+    signInWithEmailAndPassword
 } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js";
+
+export let uid;
 
 // web app's Firebase configuration
 const firebaseConfig = {
@@ -176,32 +179,58 @@ logoutButton.addEventListener('click', function () {
 const welcome = document.getElementById('welcomeMessage');
 const previousDisplayState = welcome.style.display;
 
-onAuthStateChanged(auth, (user) => {
-    const navbarLinks = document.getElementById('auth-navbarLinks');
-    const loginDiv = document.getElementById('loginDiv');
+export function checkIfUserSignedIn() {
+    onAuthStateChanged(auth, (user) => {
+        const navbarLinks = document.getElementById('auth-navbarLinks');
+        const loginDiv = document.getElementById('loginDiv');
+        const watchlistIcon = document.getElementsByClassName('watchlistIcon');
+        const favoritesIcon = document.getElementsByClassName('heartIcon');
 
-    if (user) {
-        // user signed in
-        const uid = user.uid;
-        console.log("User is signed in:", uid);
-        // Perform actions for signed-in user
-        navbarLinks.classList.remove('hidden');
-        loginDiv.classList.add('hidden');
+        if (user) {
+            // user signed in
+            uid = user.uid;
+            console.log("User is signed in:", uid);
+            // Perform actions for signed-in user
+            navbarLinks.classList.remove('hidden');
+            loginDiv.classList.add('hidden');
 
-        // TODO: modify welcome message to a specific user
-        // Hide message after 2 seconds
-        setTimeout(function () {
-            welcome.style.display = 'none';
-        }, 2000);
-    } else {
-        // User is signed out
-        console.log("User is signed out");
-        navbarLinks.classList.add('hidden');
-        loginDiv.classList.remove('hidden');
+            // Loop through the watchlist icons and remove the 'hidden' class
+            for (let i = 0; i < watchlistIcon.length; i++) {
+                watchlistIcon[i].classList.remove('hidden');
+            }
 
-        // Hide message after 2 seconds
-        setTimeout(function () {
-            welcome.style.display = previousDisplayState;
-        }, 2000);
-    }
-});
+            // Loop through the favorites icons and remove the 'hidden' class
+            for (let i = 0; i < favoritesIcon.length; i++) {
+                favoritesIcon[i].classList.remove('hidden');
+            }
+
+            // TODO: modify welcome message to a specific user
+            // Hide message after 2 seconds
+            setTimeout(function () {
+                welcome.style.display = 'none';
+            }, 2000);
+        } else {
+            // User is signed out
+            console.log("User is signed out");
+            navbarLinks.classList.add('hidden');
+            loginDiv.classList.remove('hidden');
+
+            // Loop through the watchlist icons and add the 'hidden' class
+            for (let i = 0; i < watchlistIcon.length; i++) {
+                watchlistIcon[i].classList.add('hidden');
+            }
+
+            // Loop through the favorites icons and add the 'hidden' class
+            for (let i = 0; i < favoritesIcon.length; i++) {
+                favoritesIcon[i].classList.add('hidden');
+            }
+
+            // Hide message after 2 seconds
+            setTimeout(function () {
+                welcome.style.display = previousDisplayState;
+            }, 2000);
+        }
+    });
+}
+
+checkIfUserSignedIn();
