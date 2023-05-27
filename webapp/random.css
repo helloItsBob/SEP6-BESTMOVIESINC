@@ -1,0 +1,37 @@
+#random {
+  position: relative;
+}
+
+#random img {
+  position: absolute;
+  bottom: -2px;
+  left: -25px;
+  width: 50px;
+}
+
+/* drag bar styling */
+
+#dragBar {
+  display: inline;
+  padding-right: 20px;
+}
+
+#dragBar input {
+  height: 10px;
+  -webkit-appearance: none;
+  background-color: #ccc;
+  border-radius: 5px;
+}
+
+#dragBar input::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: #4CAF50;
+  cursor: pointer;
+}
+
+#dragBar output {
+  padding-right: 20px;
+}

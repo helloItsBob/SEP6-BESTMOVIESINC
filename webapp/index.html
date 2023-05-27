@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="search.css">
     <link rel="stylesheet" href="moviePopup.css">
     <link rel="stylesheet" href="icons.css">
+    <link rel="stylesheet" href="random.css">
 </head>
 <body>
 <div class="container">
@@ -30,6 +31,14 @@
 
         <div id="auth-navbarLinks" class="hidden">
             <b id="welcomeMessage">Welcome!</b>
+            <form id="dragBar" oninput="x.value=parseInt(a.value)">
+                <label for="a"></label>
+                <input type="range" id="a" min="1" max="10" value="5">
+                <output id="x" for="a"></output>
+            </form>
+            <a href="#" id="random">
+                <img id="randomImg" src="clover.webp" alt="Random icon">
+            </a>
             <a href="#" id="watchlist">Watch List</a>
             <a href="#" id="favorites">Favorites</a>
             <button id="logoutButton" type="button">Logout</button>
@@ -113,5 +122,6 @@
 <script type="module" src="login.js"></script>
 <script src="icons.js"></script>
 <script type="module" src="retrieveLists.js"></script>
+<script type="module" src="random.js"></script>
 </body>
 </html>
