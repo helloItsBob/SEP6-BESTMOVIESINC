@@ -42,3 +42,42 @@ function fetchList(list, uid) {
             console.error('Error:', error);
         });
 }
+
+export async function fetchFavoriteList(uid) {
+    const url = retrieveListsUrl + '?list='
+        + "favorites" + '&uid=' + uid;
+
+    return fetch(url)
+        .then(response => {
+            if (response.ok) {
+                return response.json();
+            } else {
+                throw new Error('Failed to retrieve movie data');
+            }
+        })
+        .then(data => {
+            const filteredMovies = filterMovieProperties(data);
+            const movieIds = filteredMovies.map(object => object.id);
+            return movieIds;
+        });
+}
+
+
+export async function fetchWatchList(uid) {
+    const url = retrieveListsUrl + '?list='
+        + "watchlist" + '&uid=' + uid;
+
+    return fetch(url)
+        .then(response => {
+            if (response.ok) {
+                return response.json();
+            } else {
+                throw new Error('Failed to retrieve movie data');
+            }
+        })
+        .then(data => {
+            const filteredMovies = filterMovieProperties(data);
+            const movieIds = filteredMovies.map(object => object.id);
+            return movieIds;
+        });
+}
