@@ -187,6 +187,8 @@ export function checkIfUserSignedIn() {
         const watchlistIcon = document.getElementsByClassName('watchlistIcon');
         const favoritesIcon = document.getElementsByClassName('heartIcon');
         const movieCards = document.querySelectorAll('.movieCard');
+        const loadingOverlay = document.getElementById("loading-overlay");
+
 
         if (user) {
             // user signed in
@@ -195,7 +197,10 @@ export function checkIfUserSignedIn() {
             // Perform actions for signed-in user
             navbarLinks.classList.remove('hidden');
             loginDiv.classList.add('hidden');
-            
+
+            // Start loading animation
+            loadingOverlay.style.display = "flex";
+
             // Fetch user lists to change icon states further
             const favList = await fetchFavoriteList(uid);
             const watchList = await fetchWatchList(uid);
@@ -230,6 +235,10 @@ export function checkIfUserSignedIn() {
             setTimeout(function () {
                 welcome.style.display = 'none';
             }, 2000);
+
+            // Stop loading animation
+            loadingOverlay.style.display = "none";
+
         } else {
             // User is signed out
             console.log("User is signed out");
