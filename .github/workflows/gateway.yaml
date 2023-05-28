@@ -30,7 +30,7 @@ jobs:
 
       - name: Deploy API to Cloud API Gateway
         run: |
-          gcloud api-gateway api-configs create api-config-v5 \
+          gcloud api-gateway api-configs create api-config-v6 \
             --api=api-id \
             --project=${{ secrets.GC_PROJECT_ID }} \
             --openapi-spec=./gateway/open-api.yaml
@@ -39,6 +39,6 @@ jobs:
         run: |
           gcloud api-gateway gateways update movies-gateway \
             --api=api-id \
-            --api-config=api-config-v5 \
+            --api-config=api-config-v6 \
             --location=europe-west1	\
             --project=${{ secrets.GC_PROJECT_ID }}
