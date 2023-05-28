@@ -185,23 +185,6 @@ paths:
             type: string
 
   /comments:
-    get:
-      operationId: getCommentsForMovie
-      x-google-backend:
-        address: https://comment-func-nw2z6mefba-lz.a.run.app
-      summary: Retrieves all user comments for a specific movie from db
-      parameters:
-        - name: movieId
-          in: query
-          description: Movie ID to retrieve user comments for
-          required: true
-          type: string
-      responses:
-        '200':
-          description: A successful response
-          schema:
-            type: string
-
     post:
       operationId: postCommentForMovie
       x-google-backend:
@@ -266,10 +249,28 @@ paths:
           schema:
             type: string
 
+  /getDeleteComments:
+    get:
+      operationId: getCommentsForMovie
+      x-google-backend:
+        address: https://get-delete-comments-func-nw2z6mefba-lz.a.run.app
+      summary: Retrieves all user comments for a specific movie from db
+      parameters:
+        - name: movieId
+          in: query
+          description: Movie ID to retrieve user comments for
+          required: true
+          type: string
+      responses:
+        '200':
+          description: A successful response
+          schema:
+            type: string
+
     delete:
       operationId: deleteCommentsForMovie
       x-google-backend:
-        address: https://comment-func-nw2z6mefba-lz.a.run.app
+        address: https://get-delete-comments-func-nw2z6mefba-lz.a.run.app
       summary: Delete a specific comment for a specific movie from db
       parameters:
         - name: uid
