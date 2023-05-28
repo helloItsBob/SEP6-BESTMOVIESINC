@@ -24,6 +24,11 @@
             <artifactId>neo4j-java-driver-all</artifactId>
             <version>5.8.0</version>
         </dependency>
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>2.10.1</version>
+        </dependency>
     </dependencies>
 
     <build>
