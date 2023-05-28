@@ -150,6 +150,26 @@ jobs:
       - name: MVN Test
         run: cd functions/comment-func && mvn test
 
+  build_get_delete_comments_func:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          cache: maven
+      - name: Run the Maven verify phase
+        run: cd functions/get-delete-comments-func && mvn --batch-mode --update-snapshots verify
+      - name: MVN Compile
+        run: cd functions/get-delete-comments-func && mvn compile
+      - name: Build with Maven
+        run: cd functions/get-delete-comments-func && mvn --batch-mode package --file pom.xml
+      - name: MVN Test
+        run: cd functions/get-delete-comments-func && mvn test
+
   build_random_movies_func:
     runs-on: ubuntu-latest
 
