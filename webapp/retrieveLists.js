@@ -57,8 +57,7 @@ export async function fetchFavoriteList(uid) {
         })
         .then(data => {
             const filteredMovies = filterMovieProperties(data);
-            const movieIds = filteredMovies.map(object => object.id);
-            return movieIds;
+            return filteredMovies.map(object => object.id);
         });
 }
 
@@ -77,7 +76,6 @@ export async function fetchWatchList(uid) {
         })
         .then(data => {
             const filteredMovies = filterMovieProperties(data);
-            const movieIds = filteredMovies.map(object => object.id);
-            return movieIds;
+            return filteredMovies.map(object => object.id);
         });
 }

@@ -35,11 +35,6 @@
   flex-grow: 1; /* Allow the navigation links to grow and occupy remaining space */
 }
 
-#auth-navbarLinks b {
-  display: inline;
-  padding-right: 50px;
-}
-
 /* navbar highlighting */
 .navbar .activeTab:not(.logoContainer a):not(#registerButton):not(#random) {
   background-color: #8BC34A;
