@@ -21,14 +21,8 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
         cache: maven   
-    - name: Run the Maven verify phase
+    - name: Run the Maven verify, build and test
       run: cd functions/get-movies-func && mvn --batch-mode --update-snapshots verify
-    - name: MVN Compile
-      run: cd functions/get-movies-func && mvn compile
-    - name: Build with Maven
-      run: cd functions/get-movies-func && mvn --batch-mode package --file pom.xml
-    - name: MVN Test
-      run: cd functions/get-movies-func && mvn test
 
   build_search_movie_func:
     runs-on: ubuntu-latest
@@ -41,14 +35,8 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
         cache: maven   
-    - name: Run the Maven verify phase
+    - name: Run the Maven verify, build and test
       run: cd functions/search-movie-func && mvn --batch-mode --update-snapshots verify
-    - name: MVN Compile
-      run: cd functions/search-movie-func && mvn compile
-    - name: Build with Maven
-      run: cd functions/search-movie-func && mvn --batch-mode package --file pom.xml
-    - name: MVN Test
-      run: cd functions/search-movie-func && mvn test
 
   build_store_users_neo4j_func:
     runs-on: ubuntu-latest
@@ -61,14 +49,8 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
         cache: maven   
-    - name: Run the Maven verify phase
+    - name: Run the Maven verify, build and test
       run: cd functions/store-users-neo4j-func && mvn --batch-mode --update-snapshots verify
-    - name: MVN Compile
-      run: cd functions/store-users-neo4j-func && mvn compile
-    - name: Build with Maven
-      run: cd functions/store-users-neo4j-func && mvn --batch-mode package --file pom.xml
-    - name: MVN Test
-      run: cd functions/store-users-neo4j-func && mvn test
 
   build_get_cast_and_trailer_func:
     runs-on: ubuntu-latest
@@ -81,14 +63,8 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
         cache: maven   
-    - name: Run the Maven verify phase
+    - name: Run the Maven verify, build and test
       run: cd functions/get-cast-and-trailer-func && mvn --batch-mode --update-snapshots verify
-    - name: MVN Compile
-      run: cd functions/get-cast-and-trailer-func && mvn compile
-    - name: Build with Maven
-      run: cd functions/get-cast-and-trailer-func && mvn --batch-mode package --file pom.xml
-    - name: MVN Test
-      run: cd functions/get-cast-and-trailer-func && mvn test
 
   build_movie_lists_func:
     runs-on: ubuntu-latest
@@ -101,14 +77,8 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
           cache: maven
-      - name: Run the Maven verify phase
+      - name: Run the Maven verify, build and test
         run: cd functions/movie-lists-func && mvn --batch-mode --update-snapshots verify
-      - name: MVN Compile
-        run: cd functions/movie-lists-func && mvn compile
-      - name: Build with Maven
-        run: cd functions/movie-lists-func && mvn --batch-mode package --file pom.xml
-      - name: MVN Test
-        run: cd functions/movie-lists-func && mvn test
 
   build_retreive_lists_func:
     runs-on: ubuntu-latest
@@ -121,14 +91,8 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
           cache: maven
-      - name: Run the Maven verify phase
+      - name: Run the Maven verify, build and test
         run: cd functions/retreive-lists-func && mvn --batch-mode --update-snapshots verify
-      - name: MVN Compile
-        run: cd functions/retreive-lists-func && mvn compile
-      - name: Build with Maven
-        run: cd functions/retreive-lists-func && mvn --batch-mode package --file pom.xml
-      - name: MVN Test
-        run: cd functions/retreive-lists-func && mvn test
 
   build_comment_func:
     runs-on: ubuntu-latest
@@ -141,14 +105,8 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
           cache: maven
-      - name: Run the Maven verify phase
+      - name: Run the Maven verify, build and test
         run: cd functions/comment-func && mvn --batch-mode --update-snapshots verify
-      - name: MVN Compile
-        run: cd functions/comment-func && mvn compile
-      - name: Build with Maven
-        run: cd functions/comment-func && mvn --batch-mode package --file pom.xml
-      - name: MVN Test
-        run: cd functions/comment-func && mvn test
 
   build_get_delete_comments_func:
     runs-on: ubuntu-latest
@@ -161,14 +119,8 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
           cache: maven
-      - name: Run the Maven verify phase
+      - name: Run the Maven verify, build and test
         run: cd functions/get-delete-comments-func && mvn --batch-mode --update-snapshots verify
-      - name: MVN Compile
-        run: cd functions/get-delete-comments-func && mvn compile
-      - name: Build with Maven
-        run: cd functions/get-delete-comments-func && mvn --batch-mode package --file pom.xml
-      - name: MVN Test
-        run: cd functions/get-delete-comments-func && mvn test
 
   build_random_movies_func:
     runs-on: ubuntu-latest
@@ -181,11 +133,6 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
           cache: maven
-      - name: Run the Maven verify phase
+      - name: Run the Maven verify, build and test
         run: cd functions/random-movies-func && mvn --batch-mode --update-snapshots verify
-      - name: MVN Compile
-        run: cd functions/random-movies-func && mvn compile
-      - name: Build with Maven
-        run: cd functions/random-movies-func && mvn --batch-mode package --file pom.xml
-      - name: MVN Test
-        run: cd functions/random-movies-func && mvn test
+
