@@ -1,0 +1,65 @@
+/* styling of comment section */
+
+.commentContainer {
+  margin-top: 40px;
+  width: 100%;
+}
+
+#userReviews {
+  margin-top: 70px;
+  background-color: #f2f2f2;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.userReviewDiv {
+  padding: 10px;
+}
+
+.userReviewDiv:nth-child(even) {
+  background-color: #cde5cd;
+}
+
+#usernameElement {
+  font-weight: bold;
+  font-size: 20px;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+#dateElement {
+  color: #777;
+  font-size: 12px;
+  margin-bottom: 5px;
+}
+
+#commentElement {
+  color: #555;
+  margin-bottom: 5px;
+}
+
+#ratingElement {
+  margin-bottom: 70px;
+}
+
+.inputBox {
+  width: 96%;
+  height: 100px;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  padding: 10px;
+}
+
+.subButton {
+  float: right;
+}
+
+.star {
+  font-size: 30px;
+  color: darkgray;
+  float: left;
+}
+
+.star.filledStar {
+  color: #4CAF50;
+}

@@ -177,9 +177,6 @@ logoutButton.addEventListener('click', function () {
 
 //****************  PERSONALIZED CONTENT BASED ON AUH STATE  *****************//
 
-const welcome = document.getElementById('welcomeMessage');
-const previousDisplayState = welcome.style.display;
-
 export function checkIfUserSignedIn() {
     onAuthStateChanged(auth, async (user) => {
         const navbarLinks = document.getElementById('auth-navbarLinks');
@@ -230,12 +227,6 @@ export function checkIfUserSignedIn() {
                 }
             }
 
-            // TODO: modify welcome message to a specific user
-            // Hide message after 2 seconds
-            setTimeout(function () {
-                welcome.style.display = 'none';
-            }, 2000);
-
             // Stop loading animation
             loadingOverlay.style.display = "none";
 
@@ -254,11 +245,6 @@ export function checkIfUserSignedIn() {
             for (let i = 0; i < favoritesIcon.length; i++) {
                 favoritesIcon[i].classList.add('hidden');
             }
-
-            // Hide message after 2 seconds
-            setTimeout(function () {
-                welcome.style.display = previousDisplayState;
-            }, 2000);
         }
     });
 }
