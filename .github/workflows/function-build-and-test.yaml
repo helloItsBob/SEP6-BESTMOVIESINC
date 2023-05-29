@@ -40,7 +40,10 @@ jobs:
 
   build_store_users_neo4j_func:
     runs-on: ubuntu-latest
-
+    env:
+      NEO4J_URI: ${{ secrets.NEO4J_URI }}
+      NEO4J_USER: ${{ secrets.NEO4J_USER }}
+      NEO4J_PASSWORD: ${{ secrets.NEO4J_PASSWORD }}  
     steps:
     - uses: actions/checkout@v3
     - name: Set up JDK 17
@@ -68,7 +71,10 @@ jobs:
 
   build_movie_lists_func:
     runs-on: ubuntu-latest
-
+    env:
+      NEO4J_URI: ${{ secrets.NEO4J_URI }}
+      NEO4J_USER: ${{ secrets.NEO4J_USER }}
+      NEO4J_PASSWORD: ${{ secrets.NEO4J_PASSWORD }}  
     steps:
       - uses: actions/checkout@v3
       - name: Set up JDK 17
