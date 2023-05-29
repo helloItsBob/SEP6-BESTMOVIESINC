@@ -9,22 +9,15 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
-import java.util.Map;
 import java.util.Scanner;
 
 public class SearchMovie implements HttpFunction {
-
-  public static String getTMDBApiKey()
-  {
-    Map<String, String> env = System.getenv();
-    return env.get("TMDB_API_KEY");
-  }
 
   @Override
   public void service(HttpRequest httpRequest, HttpResponse httpResponse)
       throws IOException {
 
-    String tmdbApiKey = getTMDBApiKey();
+    String tmdbApiKey = System.getenv().get("TMDB_API_KEY");
 
     String movieTitle = httpRequest.getFirstQueryParameter("movieTitle").orElse("");
 
@@ -48,7 +41,6 @@ public class SearchMovie implements HttpFunction {
       // Write the API response to the HTTP response
       PrintWriter writer = new PrintWriter(httpResponse.getWriter());
       writer.write(responseData);
-      writer.close();
     }
   }
 
