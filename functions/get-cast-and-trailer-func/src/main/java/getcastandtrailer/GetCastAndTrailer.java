@@ -12,11 +12,6 @@ import java.util.Map;
 
 public class GetCastAndTrailer implements HttpFunction
 {
-  public static String getTMDBApiKey()
-  {
-    Map<String, String> env = System.getenv();
-    return env.get("TMDB_API_KEY");
-  }
 
   @Override public void service(HttpRequest httpRequest,
       HttpResponse httpResponse) throws Exception
@@ -26,7 +21,7 @@ public class GetCastAndTrailer implements HttpFunction
     httpResponse.appendHeader("Access-Control-Allow-Methods", "GET");
     httpResponse.appendHeader("Access-Control-Allow-Headers", "Content-Type");
 
-    String tmdbApiKey = getTMDBApiKey();
+    String tmdbApiKey = System.getenv().get("TMDB_API_KEY");
     String movieId = httpRequest.getFirstQueryParameter("movieId").orElse("");
 
     if (movieId.isEmpty())

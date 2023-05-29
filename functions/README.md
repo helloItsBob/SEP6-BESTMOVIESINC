@@ -50,7 +50,10 @@ in each ***run*** command
 ```yaml
   build_get_cast_and_trailer_func:
     runs-on: ubuntu-latest
-
+    env:   <--- add any env variables if needed (or omit this section if none are required)
+      NEO4J_URI: ${{ secrets.NEO4J_URI }}
+      NEO4J_USER: ${{ secrets.NEO4J_USER }}
+      NEO4J_PASSWORD: ${{ secrets.NEO4J_PASSWORD }}
     steps:
       - uses: actions/checkout@v3
       - name: Set up JDK 17
@@ -59,12 +62,6 @@ in each ***run*** command
           java-version: '17'
           distribution: 'temurin'
           cache: maven
-      - name: Run the Maven verify phase
+      - name: Run the Maven verify, build and test
         run: cd functions/get-cast-and-trailer-func && mvn --batch-mode --update-snapshots verify  <--- change path
-      - name: MVN Compile
-        run: cd functions/get-cast-and-trailer-func && mvn compile  <--- change path
-      - name: Build with Maven
-        run: cd functions/get-cast-and-trailer-func && mvn --batch-mode package --file pom.xml  <--- change path
-      - name: MVN Test
-        run: cd functions/get-cast-and-trailer-func && mvn test  <--- change path
 ```

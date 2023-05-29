@@ -14,16 +14,11 @@ import java.util.Map;
 
 public class GetMovies implements HttpFunction
 {
-  public static String getTMDBApiKey()
-  {
-    Map<String, String> env = System.getenv();
-    return env.get("TMDB_API_KEY");
-  }
 
   @Override public void service(HttpRequest httpRequest,
       HttpResponse httpResponse) throws Exception
   {
-    String tmdbApiKey = getTMDBApiKey();
+  String tmdbApiKey = System.getenv().get("TMDB_API_KEY");
 
     String endpoint = httpRequest.getFirstQueryParameter("endpoint").orElse("");
     String apiUrl = "";
