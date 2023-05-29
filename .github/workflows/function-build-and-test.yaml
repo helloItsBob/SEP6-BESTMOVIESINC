@@ -58,7 +58,8 @@ jobs:
 
   build_get_cast_and_trailer_func:
     runs-on: ubuntu-latest
-
+    env:
+      TMDB_API_KEY: ${{ secrets.TMDB_API_KEY }} 
     steps:
     - uses: actions/checkout@v3
     - name: Set up JDK 17
