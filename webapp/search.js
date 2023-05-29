@@ -1,6 +1,7 @@
 // CODE FOR SEARCH BOX
 
 import {filterMovieProperties, updateMovieDetails} from "./script.js";
+import {checkIfUserSignedIn} from "./login.js";
 
 const urlSearch = "URL_SEARCH_PLACEHOLDER";
 function searchMovie() {
@@ -22,6 +23,8 @@ function searchMovie() {
             // hide loading animation
             const loadingOverlay = document.getElementById("loading-overlay");
             loadingOverlay.style.display = "none";
+
+            checkIfUserSignedIn();
 
             // Clear the input value
             movieTitleInput.value = '';
