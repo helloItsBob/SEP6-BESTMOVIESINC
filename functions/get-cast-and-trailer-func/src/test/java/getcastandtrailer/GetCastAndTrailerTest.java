@@ -48,7 +48,6 @@ public class GetCastAndTrailerTest {
         new GetCastAndTrailer().service(request, response);
 
         writerOut.flush();
-        System.out.println(responseOut.toString());
         assert (responseOut.toString().contains("\"title\":\"The Good, the Bad and the Ugly\""));
         assert (responseOut.toString().contains("\"name\":\"Clint Eastwood\"")); //actor
         assert (responseOut.toString().contains("\"type\":\"Trailer\"")); //to see that there is object of type trailer

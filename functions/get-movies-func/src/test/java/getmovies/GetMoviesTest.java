@@ -50,7 +50,6 @@ public class GetMoviesTest {
         new GetMovies().service(request, response);
 
         writerOut.flush();
-        System.out.println(responseOut.toString());
         assert (!responseOut.toString().isEmpty());
         assert (responseOut.toString().contains("\"page\":2"));
     }
@@ -62,7 +61,6 @@ public class GetMoviesTest {
         new GetMovies().service(request, response);
 
         writerOut.flush();
-        System.out.println(responseOut.toString());
         assert (!responseOut.toString().isEmpty());
         assert (responseOut.toString().contains("\"page\":1"));
     }
@@ -74,7 +72,6 @@ public class GetMoviesTest {
         new GetMovies().service(request, response);
 
         writerOut.flush();
-        System.out.println(responseOut.toString());
         assert (!responseOut.toString().isEmpty());
         assert (responseOut.toString().contains("\"page\":1"));
     }
@@ -86,7 +83,6 @@ public class GetMoviesTest {
         new GetMovies().service(request, response);
 
         writerOut.flush();
-        System.out.println(responseOut.toString());
         assert (!responseOut.toString().isEmpty());
         assert (responseOut.toString().contains("\"page\":1"));
     }
