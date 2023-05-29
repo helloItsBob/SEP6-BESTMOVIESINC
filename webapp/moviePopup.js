@@ -36,6 +36,7 @@ movieContainer.addEventListener('click', function (event) {
 
         // Create element to hold a movie trailer
         const movieTrailer = document.createElement('div');
+        movieTrailer.id = 'movieTrailer';
         movieTrailer.classList.add('movieTrailer');
         let trailerUrl = '';
 
@@ -116,8 +117,10 @@ movieContainer.addEventListener('click', function (event) {
         commentContainer.classList.add('commentContainer');
 
         // create a comment box and a button to submit
-        const commentBox = makeCommentBox(uid, movieId);
-        commentContainer.appendChild(commentBox);
+        if (uid !== undefined) {
+            const commentBox = makeCommentBox(uid, movieId);
+            commentContainer.appendChild(commentBox);
+        }
 
         fetch(urlGetDeleteComments + '?movieId=' + movieId)
             .then(response => {
@@ -207,4 +210,7 @@ document.addEventListener('click', function (event) {
 function closeMoviePopup() {
     const moviePopup = document.getElementById('moviePopup');
     moviePopup.style.display = 'none';
+    const trailer = document.getElementById('movieTrailer');
+    // reset the trailer when closing modal
+    trailer.innerHTML = '';
 }
