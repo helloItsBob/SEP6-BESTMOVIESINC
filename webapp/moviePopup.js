@@ -58,12 +58,12 @@ movieContainer.addEventListener('click', function (event) {
                 // Process the movie details
                 console.log('Movie details:', data);
 
-                // Showing director
-                const director = data.credits.crew.find(member => member.job === 'Director');
-                const directorName = director ? director.name : 'Unknown';
-                const directorElem = document.createElement('p');
-                directorElem.textContent = 'Director: ' + directorName;
-                modalContent.appendChild(directorElem);
+                // Showing directors
+                const director = data.credits.crew.filter(member => member.job === 'Director');
+                const name = director.length > 0 ? director.map(dir => dir.name) : 'Unknown';
+                const directorElement = document.createElement('p');
+                directorElement.textContent = 'Directed by: ' + name.join(', ');
+                modalContent.appendChild(directorElement);
 
                 // Adding a movie trailer
                 const trailerKey = data.videos.results[0].key;
