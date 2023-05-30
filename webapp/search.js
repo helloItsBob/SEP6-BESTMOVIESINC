@@ -7,6 +7,7 @@ const urlSearch = "URL_SEARCH_PLACEHOLDER";
 function searchMovie() {
     const movieTitleInput = document.getElementById('titleInput');
     const movieTitle = movieTitleInput.value;
+    const originalPlaceholder = movieTitleInput.placeholder;
 
     // show loading animation
     const loadingOverlay = document.getElementById("loading-overlay");
@@ -23,6 +24,14 @@ function searchMovie() {
             // hide loading animation
             const loadingOverlay = document.getElementById("loading-overlay");
             loadingOverlay.style.display = "none";
+
+            // change placeholder with the search result
+            movieTitleInput.placeholder = `Results for '${movieTitle}'`;
+            // hide message after 3 seconds
+            setTimeout(function () {
+                registrationModal.style.display = 'none';
+                movieTitleInput.placeholder = originalPlaceholder;
+            }, 3000);
 
             checkIfUserSignedIn();
 
