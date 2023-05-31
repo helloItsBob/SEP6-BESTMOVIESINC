@@ -45,5 +45,9 @@ function searchMovie() {
 
 document.getElementById('searchForm').addEventListener('submit', function (event) {
     event.preventDefault(); // Prevent form submission
+    const navbarItems = document.querySelectorAll('.navbar a');
+    navbarItems.forEach(function (item) {
+        item.classList.remove('activeTab');
+    });
     searchMovie();
 });
