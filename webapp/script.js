@@ -133,6 +133,14 @@ export function updateMovieDetails(movieData) {
         const titleElement = document.createElement('h2');
         titleElement.classList.add('movieTitle');
         titleElement.textContent = movie.title;
+
+        // decrease font size if title is too long
+        const title = titleElement.innerHTML;
+        const maximumLength = 40;
+
+        if (title.length > maximumLength) {
+            titleElement.style.fontSize = 18 + 'px';
+        }
         movieCard.appendChild(titleElement);
 
         // Create movie poster element
